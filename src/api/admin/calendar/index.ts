@@ -1,2 +1,5 @@
 export * from './consulProduct'
 export * from './consulItems'
+export * from './getAllDoctors'
+export * from './getAllDoctorsProduct'
+export * from './postConsulProduct'

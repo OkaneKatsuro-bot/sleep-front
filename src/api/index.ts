@@ -4,4 +4,4 @@ export * as admin from './admin';
 // export * as methods from './methods';
 // export * as posts from './posts';
 // export * as shop from './shop';
-// export * as test from './test';
+ export * as test from './test';

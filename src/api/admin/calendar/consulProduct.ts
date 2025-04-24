@@ -8,16 +8,16 @@ export async function getConsulProductById(id: number) {
     return fetcher(`/admin/calendar/consultProducts/${id}`)
 }
 
-export async function postConsulProduct(title: string, description: string, image: string, price: string, doctorId: string) {
-    return fetcher('/admin/calendar/consultProducts', {
-        method: 'POST',
-        body: JSON.stringify({
-            title,
-            description,
-            image,
-            price,
-            doctorId,
-        })
-    })
-}
-
+// export async function postConsulProduct(title: string, description: string, image: string, price: string, doctorId: string) {
+//     return fetcher('/admin/calendar/consultProducts', {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             title,
+//             description,
+//             image,
+//             price,
+//             doctorId,
+//         })
+//     })
+// }
+//
