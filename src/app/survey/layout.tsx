@@ -1,6 +1,5 @@
 import type {Metadata} from "next";
 import {Header} from "@/components/base-ui/header";
-import "./globals.css";
 
 export const metadata: Metadata = {
     title: "Про нас",

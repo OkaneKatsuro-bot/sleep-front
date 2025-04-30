@@ -7,4 +7,6 @@ export interface Method {
     addeddescription?: string
     image: string
     Disease: Disease[]
+    [key: string]: unknown;
+
 }

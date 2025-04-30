@@ -1,16 +1,16 @@
-import {useEffect, useState} from "react";
-import {marked} from "marked";
-import {Badge} from "@/components/ui/badge";
+import { useEffect, useState } from "react";
+import { marked } from "marked";
+import { Badge } from "@/components/ui/badge";
 
 interface PostCardProps {
     author: string;
     title: string;
     description: string; // Markdown текст
     categories: string[];
-    image?: string;
+    image?: string; // Опциональный параметр для изображения
 }
 
-export function PostsCard({title, description, categories, image}: PostCardProps) {
+export function PostsCard({ author, title, description, categories, image }: PostCardProps) {
     const [descriptionHtml, setDescriptionHtml] = useState<string>("");
 
     useEffect(() => {
@@ -18,14 +18,12 @@ export function PostsCard({title, description, categories, image}: PostCardProps
             const html = await marked.parse(description);
             setDescriptionHtml(html);
         }
-
         parseMarkdown().catch(console.error);
     }, [description]);
 
     return (
         <div className="max-full w-full group/card">
-            <div
-                className="cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl max-w-sm mx-auto flex flex-col justify-between p-4">
+            <div className="cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl max-w-sm mx-auto flex flex-col justify-between p-4">
                 {image && (
                     <img
                         src={encodeURI(image)}
@@ -33,8 +31,7 @@ export function PostsCard({title, description, categories, image}: PostCardProps
                         className="w-full h-full object-cover rounded-md absolute top-0 left-0 z-0"
                     />
                 )}
-                <div
-                    className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black opacity-60 z-10"></div>
+                <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black opacity-60 z-10"></div>
                 <div className="flex flex-row items-center space-x-4 z-20">
                     <div className="flex flex-col">
                         <div className="font-normal text-base text-gray-50 relative z-10">
@@ -53,7 +50,7 @@ export function PostsCard({title, description, categories, image}: PostCardProps
                 <div className="text content z-20 relative">
                     <h1 className="font-bold text-xl md:text-2xl text-gray-50">{title}</h1>
                     <div className="text-balance font-normal text-sm text-gray-50 my-4 line-clamp-3">
-                        <div dangerouslySetInnerHTML={{__html: descriptionHtml}}/>
+                        <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
                     </div>
                 </div>
             </div>

@@ -5,11 +5,12 @@ import Footer from "@/components/base-ui/footer";
 import Steps from "@/components/base-ui/steps";
 import {Hero} from "@/components/base-ui/hero";
 import {TopBar} from "@/components/base-ui/top-bar";
-import { FeaturesSectionDemo } from "@/components/base-ui/services";
+import {FeaturesSectionDemo} from "@/components/base-ui/services";
 import {SleepStats} from "@/components/base-ui/blocks";
-import {PostPageComp} from "@/components/posts-components/PostPageComp";
+
 import TeamCard from "@/components/base-ui/team";
 import Information from "@/components/base-ui/information";
+import {PostPageComp} from "@/components/postsforuser/PostPageComp";
 
 export default function Home() {
     return (

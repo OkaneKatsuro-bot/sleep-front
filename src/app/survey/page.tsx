@@ -1,7 +1,5 @@
-// app/signin/page.tsx
+
 "use client"; // Эта строка должна быть первой
-
-
 
 
 import Information from "@/components/base-ui/information";

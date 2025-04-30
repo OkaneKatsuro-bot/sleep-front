@@ -1,0 +1,21 @@
+import type {Metadata} from "next";
+import {Header} from "@/components/base-ui/header";
+
+
+export const metadata: Metadata = {
+    title: "Методы диагностики",
+    description: "Центр здорового сна",
+};
+
+export default function RootLayout({
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
+}>) {
+    return (
+        <main>
+            <Header hasSearch={false}/>
+            {children}
+        </main>
+    );
+}

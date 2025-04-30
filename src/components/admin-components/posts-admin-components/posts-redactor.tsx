@@ -182,7 +182,7 @@ export function PostRedacor() {
                 id,
                 body: text,
                 categories,
-                image: imageUrl,
+                image: (imageUrl as any).imageUrl ?? undefined,
                 posttype: postType,
             };
 
@@ -283,7 +283,8 @@ export function PostRedacor() {
         try {
             const res = await uploadPostImageAction(formData);
             if (isSuccess(res)) {
-                setImageUrl(res.imageUrl)
+                setImageUrl(res.imageUrl as string);
+                console.log(imageUrl)
             } else {
                 alert(res.message);
             }
@@ -448,12 +449,13 @@ export function PostRedacor() {
                             </CardContent>
                             <CardFooter>
                                 <Button onClick={handleUploadImage}>Загрузить фото</Button>
-                                <img
-                                    src={imageUrl!}
-                                    alt="Описание изображения"
-                                    width={400}
-                                    height={500}
-                                />
+                                {imageUrl && (
+                                    <img
+                                        src={imageUrl}
+                                        alt="Описание изображения"
+                                        width={400}
+                                    />
+                                )}
                             </CardFooter>
                         </Card>
                     </DialogContent>

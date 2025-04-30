@@ -17,8 +17,8 @@ export interface Category {
 }
 
 export enum PostType {
-    "MAIN",
-    "TEST",
-    "BASE",
-
+    MAIN = 'MAIN',
+    TEST = 'TEST',
+    BASE = 'BASE',
 }
+

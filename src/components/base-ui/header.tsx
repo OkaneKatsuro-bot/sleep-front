@@ -30,9 +30,9 @@ interface Props {
 }
 
 export const Header: React.FC<Props> = ({className, hasSearch}) => {
-   const router = useRouter();
+    const router = useRouter();
 
-    const[ isAuth,  setAuth] = useState<boolean>(false);
+    const [isAuth, setAuth] = useState<boolean>(false);
     const pathname = usePathname(); // Получаем текущий путь
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState(false);
@@ -57,11 +57,11 @@ export const Header: React.FC<Props> = ({className, hasSearch}) => {
 
     //TODO: при неавторизованом пользователе ошибка
     const checkAuth = async () => {
-        try{
+        try {
             const data = await checkMe();
             if (data.success && data.user) {
                 setAuth(true);
-            } else{
+            } else {
                 setAuth(false);
             }
 

@@ -30,6 +30,7 @@ export interface Disease {
     OptionMin?: Option[]
     //Product        Product[]
     Metod?: Method[]
+    score?: number
 }
 
 export interface Option {

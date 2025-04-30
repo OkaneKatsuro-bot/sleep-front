@@ -16,6 +16,8 @@ export interface SafeUser {
     registrationDate: Date
     specialty: string | null
     description: string | null
+    [key: string]: unknown;
+
 
 
 }

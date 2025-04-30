@@ -9,4 +9,6 @@ export interface Product {
     // items       :ProductItem[]
     // ingredients :Ingredient[]
     Disease: Disease[]
+    [key: string]: unknown;
+
 }
