@@ -40,9 +40,9 @@ export default function Home() {
                 <div id="Как мы можем помочь вам" className="">
                     <Steps/>
                 </div>
-                <div id="Команда">
+                {/* <div id="Команда">
                     <TeamCard/>
-                </div>
+                </div> */}
                 <Information/>
                 <Footer/>
 

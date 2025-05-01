@@ -123,7 +123,7 @@ export function FeaturesSectionDemo() {
             <div className="relative z-20 py-2 lg:max-w-7xl mx-auto">
                 <div className="px-8 text-center">
                     <h4 className="text-4xl lg:text-6xl font-bold tracking-tight text-center text-black dark:text-white leading-tight">
-                        Наши <span className="text-blue-500">услуги</span>
+                        Наши <span className="text-black-500">услуги</span>
                     </h4>
                 </div>
                 <div className="relative mt-12">
