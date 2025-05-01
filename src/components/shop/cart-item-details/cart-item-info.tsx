@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 
-
 interface Props {
   name: string;
   details: string;
@@ -9,11 +8,17 @@ interface Props {
 
 export const CartItemInfo: React.FC<Props> = ({ name, details, className }) => {
   return (
-    <div>
-      <div className={cn('flex items-center justify-between', className)}>
-        <h2 className="text-lg font-bold flex-1 leading-6">{name}</h2>
+    <div className={cn('space-y-1.5', className)}>
+      <div className="flex items-center justify-between gap-2">
+        <h2 className="text-lg font-semibold leading-6 text-gray-900 truncate">
+          {name}
+        </h2>
       </div>
-      {details && <p className="text-xs text-gray-400 w-[90%]">{details}</p>}
-    </div>
+      {details && (
+        <p className="text-sm text-gray-600 leading-5 line-clamp-2">
+          {details}
+        </p>
+      )}
+    </div> 
   );
 };
