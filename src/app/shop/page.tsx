@@ -11,18 +11,15 @@ import { Filters } from "@/components/shop/filters"
 import { ProductsGroupList } from "@/components/shop/product-group-list"
 import { CategoryType } from "@/types/shop.types/shop.type"
 
-// Указываем, что searchParams — это Promise<объект>
-type SearchParamsPromise = Promise<{ query?: string }>
-
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: SearchParamsPromise
+  searchParams: Promise<{ query?: string }>
 }) {
-  // 1) Дожидаемся реального объекта с query
-  const { query = '' } = await searchParams :contentReference[oaicite:0]{index=0}
+  // Здесь был синтаксический мусор — удалили его:
+  const { query = '' } = await searchParams
 
-  // 2) Передаём в findProduct уже синхронный { query }
+  // Вызывать findProduct с реальным объектом
   const categories: CategoryType[] = await findProduct({ query })
 
   const hasSearch = true
@@ -48,7 +45,6 @@ export default async function ShopPage({
         </div>
       </Container>
 
-      {/* Топ-бар с уже готовыми категориями */}
       <TopBar categories={categories.filter((c) => c.products.length > 0)} />
 
       <Container className="mt-10 pb-14">
