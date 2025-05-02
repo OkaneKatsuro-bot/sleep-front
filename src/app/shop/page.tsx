@@ -13,11 +13,9 @@ import { CategoryType } from "@/types/shop.types/shop.type"
 
 type SearchParams = { query?: string }
 
-export default async function ShopPage({
-  searchParams,
-}: {
-  searchParams: SearchParams
-}) {
+export default async function ShopPage({ searchParams }) {
+  
+
   // 1) Получили данные на сервере:
   const categories: CategoryType[] = await findProduct(searchParams)
 
