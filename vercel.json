@@ -1,0 +1,16 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "engines": {
+          "node": "16.x"
+        }
+      }
+    }
+  ],
+  "env": {
+    "NPM_FLAGS": "--force"
+  }
+}
