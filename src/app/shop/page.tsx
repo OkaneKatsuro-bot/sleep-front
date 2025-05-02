@@ -59,7 +59,7 @@ export default function Home() {
     const hasCart = true;
 
     return (
-        <>
+         <Suspense fallback={<div>Загрузка страницы …</div>}>
             {/* Верхняя панель с заголовком, поиском и кнопкой корзины */}
             <Container className="mt-10">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -102,6 +102,6 @@ export default function Home() {
                 </div>
             </Container>
             <Footer />
-        </>
+       </Suspense>
     );
 }
