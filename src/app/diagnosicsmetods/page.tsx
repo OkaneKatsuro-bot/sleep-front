@@ -48,6 +48,7 @@ export default function MetodsClient() {
                     <CardContent>
                         <div className='flex flex-row'>
                             <div className='w-2/3'>{method.addeddescription}</div>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img className='absolute right-4 top-4 max-w-40  aspect-square rounded-3xl'
                                  alt='фото метода' src={method.image}></img>
                         </div>

@@ -70,7 +70,7 @@ export default function Page({ params: paramsPromise }: { params: Promise<{ urlt
 
         localStorage.removeItem("testResults");
         resetStore();
-    }, []);
+    }, [resetStore]);
 
     //загрузка теста по titlte
     useEffect(() => {

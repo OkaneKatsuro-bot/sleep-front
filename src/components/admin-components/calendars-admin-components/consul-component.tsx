@@ -37,7 +37,7 @@ export default function DocconsulComp({consul}: DocconsulCompProps): JSX.Element
         if (isDialogOpen) {
             loadExistingSlots();
         }
-    }, [isDialogOpen]);
+    }, [isDialogOpen,]);
 
     const loadExistingSlots = async () => {
         try {
