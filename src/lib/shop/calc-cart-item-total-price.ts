@@ -1,8 +1,8 @@
-import {CartItemDTO} from "@/types/cart.dto";
-
+import { CartItemDTO } from "@/types/cart.dto";
 
 export const calcCartItemTotalPrice = (item: CartItemDTO): number => {
-  const ingredientsPrice = item.ingredients.reduce((acc: never, ingredient: { price: never; }) => acc + ingredient.price, 0);
+  // Указываем правильный тип для аккумулятора (number) и для ингредиента
+  const ingredientsPrice = item.ingredients.reduce((acc: number, ingredient: { price: number }) => acc + ingredient.price, 0);
 
   return (ingredientsPrice + item.productItem.price) * item.quantity;
 };

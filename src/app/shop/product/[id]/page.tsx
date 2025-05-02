@@ -1,23 +1,59 @@
-export const dynamic = 'force-dynamic';
+'use client' // Указываем, что это клиентский компонент
 
-import { notFound } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { Container } from "@/components/ui/container";
 import { ProductForm } from "@/components/shop/product-form";
 import { shop } from '@/api';
 
+// Функция для получения данных о продукте
 async function fetchProduct(id: number) {
     const product = await shop.getProductById(id);
     return product;
 }
 
-export default async function ProductPage(context: { params: { id: string } }) {
-    const { id } = context.params;
-    const productId = Number(id);
+export default function ProductPage() {
+    const [product, setProduct] = useState<any>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
-    if (isNaN(productId)) return notFound();
+    const router = useRouter();
+    const { id } = router.query;  // Получаем id из query (URL параметра)
 
-    const product = await fetchProduct(productId);
-    if (!product) return notFound();
+    useEffect(() => {
+        if (!id) return;  // Если id еще не доступен, ничего не делать
+
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                const productData = await fetchProduct(Number(id));  // Преобразуем id в число
+                if (!productData) {
+                    setError('Продукт не найден');
+                } else {
+                    setProduct(productData);
+                }
+            } catch (err) {
+                setError('Ошибка загрузки данных');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [id]);  // Эффект сработает, когда id изменится
+
+    if (loading) {
+        return <div>Загрузка...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (!product) {
+        return <div>Продукт не найден</div>;
+    }
 
     return (
         <Container>

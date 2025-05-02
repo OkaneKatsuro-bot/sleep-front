@@ -1,2 +1,2 @@
-export { FormInput } from './form-input';
-export { FormTextarea } from './form-textarea';
+export {FormTextarea} from './form-textarea';
+export {FormInput} from './form-input';
