@@ -11,20 +11,25 @@ import { Filters } from "@/components/shop/filters"
 import { ProductsGroupList } from "@/components/shop/product-group-list"
 import { CategoryType } from "@/types/shop.types/shop.type"
 
-type SearchParams = { query?: string }
+// Указываем, что searchParams — это Promise<объект>
+type SearchParamsPromise = Promise<{ query?: string }>
 
-export default async function ShopPage({ searchParams }) {
-  
+export default async function ShopPage({
+  searchParams,
+}: {
+  searchParams: SearchParamsPromise
+}) {
+  // 1) Дожидаемся реального объекта с query
+  const { query = '' } = await searchParams :contentReference[oaicite:0]{index=0}
 
-  // 1) Получили данные на сервере:
-  const categories: CategoryType[] = await findProduct(searchParams)
+  // 2) Передаём в findProduct уже синхронный { query }
+  const categories: CategoryType[] = await findProduct({ query })
 
   const hasSearch = true
   const hasCart = true
 
   return (
     <>
-      {/* Шапка с заголовком, поиском и корзиной */}
       <Container className="mt-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <Title text="Каталог" size="lg" className="font-extrabold" />
@@ -46,17 +51,14 @@ export default async function ShopPage({ searchParams }) {
       {/* Топ-бар с уже готовыми категориями */}
       <TopBar categories={categories.filter((c) => c.products.length > 0)} />
 
-      {/* Основной контент */}
       <Container className="mt-10 pb-14">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
-          {/* Фильтры */}
           <div className="lg:w-[250px] hidden lg:block">
             <Suspense fallback={<div>Загрузка фильтров…</div>}>
               <Filters />
             </Suspense>
           </div>
 
-          {/* Список товаров (серверный рендеринг) */}
           <div className="flex-1 pl-4 lg:pl-8">
             <div className="flex flex-col gap-8 sm:gap-16">
               {categories.map((category) =>
