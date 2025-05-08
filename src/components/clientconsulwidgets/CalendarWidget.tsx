@@ -3,17 +3,17 @@
 import {useEffect, useState} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {Dialog, DialogContent, DialogTrigger} from "@/components/ui/dialog";
+import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 
 import {z} from "zod";
 
 import {checkoutConsulSchema} from "@/components/clientconsulwidgets/checkout-consul-schema";
-import {createConsulOrder} from "@/components/clientconsulwidgets/action";
+import {createConsulOrder, getDoctorsByIdAction} from "@/components/clientconsulwidgets/action";
 import {isSuccess} from "@/lib/isSuccessGuard";
 
-interface ConsulProductWithItems {
+export interface ConsulProductWithItems {
     id: number;
     title: string;
     ConsulProductItem: {
@@ -47,21 +47,12 @@ export default function CalendarWidget({doctorId}: { doctorId: string }) {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch("/api/userconsul/doctors", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({doctorId}),
-                });
-
-                if (!response.ok) {
-                    throw new Error("Не удалось загрузить доступные даты");
+                const res = await getDoctorsByIdAction(doctorId)
+                if (isSuccess(res)) {
+                    setProducts(res.data.length > 0 ? res.data : []);
+                    setError(res.data.length === 0 ? "Нет доступных записей для этого врача" : null);
                 }
 
-                const data = await response.json();
-                setProducts(data.length > 0 ? data : []);
-                setError(data.length === 0 ? "Нет доступных записей для этого врача" : null);
             } catch (err) {
                 setError(
                     err instanceof Error
@@ -134,10 +125,11 @@ export default function CalendarWidget({doctorId}: { doctorId: string }) {
                 data: data
             });
             if (isSuccess(res)) {
-                window.location.href = res.url;
+                const paymentUrl = res.url.url
+                console.log('👉 paymentUrl:', paymentUrl);
+                // @ts-ignore
+                window.location.href = paymentUrl
             }
-
-            // Перенаправляем на страницу оплаты
 
 
         } catch (err) {
@@ -325,7 +317,7 @@ export default function CalendarWidget({doctorId}: { doctorId: string }) {
                                         </button>
                                     </DialogTrigger>
                                 ))}
-
+                                <DialogTitle>Запись на консультацию</DialogTitle>
                                 <DialogContent className="max-w-md p-6">
                                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                                         <div>

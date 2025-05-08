@@ -11,8 +11,19 @@ export async function getDoctors() {
 }
 
 export async function createOrder(prop: createConsulOrderProps) {
-    return await fetcher(`/consultations/createOrder`, {
+    return await fetcher(`/consultations/order`, {
         method: "POST",
         body: JSON.stringify(prop),
     });
+}
+
+export async function getDoctorsWSpec() {
+    return await fetcher(`/consultations/doctorsWSpec`, {})
+}
+
+export async function getDoctorsById(doctorId: string) {
+    return await fetcher(`/consultations/doctors`, {
+        method: "POST",
+        body: JSON.stringify({ doctorId }),
+    })
 }
