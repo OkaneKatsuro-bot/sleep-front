@@ -1,3 +1,4 @@
+"use client"
 import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
 import {Button} from "@/components/ui/button";
 import React, {useEffect, useState} from "react";
@@ -58,7 +59,6 @@ export default function DoctorForm({metod}: DoctorFormProps) {
         number: z
             .string()
             .nonempty("Введите номер телефона")
-            .regex(/^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/, "Введите корректный номер телефона"),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -103,6 +103,7 @@ export default function DoctorForm({metod}: DoctorFormProps) {
     }
 
 
+    // @ts-ignore
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
@@ -155,10 +156,11 @@ export default function DoctorForm({metod}: DoctorFormProps) {
                                 <FormItem>
                                     <FormLabel>Номер телефона</FormLabel>
                                     <FormControl>
-                                        <InputMask mask="+7 (999) 999-99-99"
-                                                   placeholder="+7 (___) ___-__-__" {...field}>
-                                            {(inputProps) => <Input {...inputProps} />}
-                                        </InputMask>
+                                        <Input
+                                            placeholder="+7 (___) ___-__-__"
+                                            {...field}
+
+                                        />
                                     </FormControl>
                                     <FormMessage/>
                                 </FormItem>

@@ -1,4 +1,4 @@
-// src/app/shop/@modal/(.)product/[id]/page.tsx
+// src/app/shop/@modal/(.)product/[id]/page.tsx.tsx
 'use client' // Указываем, что это клиентский компонент
 
 import {Suspense, useEffect, useState} from 'react';
