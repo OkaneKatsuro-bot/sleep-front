@@ -1,4 +1,5 @@
-import {ConsulProduct} from "@prisma/client";
+import {ConsulProduct} from "@/types/calendar.types/ConsulProduct";
+
 
 interface ConsulmainCardProps{
     consul: ConsulProduct

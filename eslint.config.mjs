@@ -1,20 +1,30 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+// eslint.config.mjs
+import js from '@eslint/js'
+import react from 'eslint-plugin-react'
+import next from 'eslint-plugin-next'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+export default [
+  // Первым — базовый JS-рекомендуемый конфиг
+  js.configs.recommended,
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  // Подключаем плагин React
   {
+    plugins: { react },
     rules: {
-      "@typescript-eslint/no-explicit-any": "off",
+      ...react.configs.recommended.rules,
     },
   },
-];
-export default eslintConfig;
+
+  // Подключаем плагин Next.js
+  {
+    plugins: { next },
+    rules: {
+      ...next.configs.recommended.rules,
+    },
+  },
+
+  // Игнорируем артефакты сборки
+  {
+    ignores: ['.next/**', 'node_modules/**'],
+  },
+]

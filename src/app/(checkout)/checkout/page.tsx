@@ -51,7 +51,7 @@ export default function CheckoutPage() {
         }
 
         fetchUserInfo();
-    }, []);
+    }, [form]);
 
     const onSubmit = async (data: CheckoutFormValues) => {
         try {

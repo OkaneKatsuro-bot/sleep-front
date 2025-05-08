@@ -1,16 +1,15 @@
 export const metadata = {
-  title: 'Asleep Регистрация',
-  description: 'Регистрация на платформе Asleep',
+    title: 'Asleep Регистрация',
+    description: 'Регистрация на платформе Asleep',
 }
 
 export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
+                                       children,
+                                   }: {
+    children: React.ReactNode
 }) {
-  return (
-    <html lang="ru">
-      <body>{children}</body>
-    </html>
-  )
+    return (
+        <div>{children}</div>
+
+    )
 }
