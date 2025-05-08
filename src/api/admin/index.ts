@@ -1,7 +1,7 @@
 export * as users from './users'
 export * as calendar from './calendar'
 // export * as doctors from './doctors'
-// export * as methods from './methods'
+export * as methods from './methods'
  export * as posts from './posts'
 // export * as shop from './shop'
 export * as tests from './tests'

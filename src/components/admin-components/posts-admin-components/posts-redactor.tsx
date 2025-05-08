@@ -54,7 +54,7 @@ config({
                     next: 'undo revoke',
                     save: 'сохранить',
                     prettier: 'prettier',
-                    pageFullscreen: 'fullscreen in page',
+                    pageFullscreen: 'fullscreen in page.tsx',
                     fullscreen: 'fullscreen',
                     preview: 'preview',
                     htmlPreview: 'html preview',
