@@ -1,15 +1,15 @@
-import { Button } from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
 import * as React from "react";
 
-import { useEffect, useState } from "react";
-import { Plus } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./form";
-import { Input } from "@/components/ui/input";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {useEffect, useState} from "react";
+import {Plus} from "lucide-react";
+import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
+import {z} from "zod";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "./form";
+import {Input} from "@/components/ui/input";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import DocconsulComp from "./consul-component"
 import {ConsulProduct} from "@/types/calendar.types/ConsulProduct";
 import {SafeUser} from "@/types/safeuser.type";
@@ -25,12 +25,12 @@ const validationMessages = {
 };
 
 const formSchema = z.object({
-    title: z.string().min(2, { message: validationMessages.title }),
-    description: z.string().min(2, { message: validationMessages.description }),
+    title: z.string().min(2, {message: validationMessages.title}),
+    description: z.string().min(2, {message: validationMessages.description}),
     price: z.coerce.number().min(0, {
         message: "Цена должна быть положительным числом",
     }),
-    doctorId: z.string().min(1, { message: validationMessages.doctor }),
+    doctorId: z.string().min(1, {message: validationMessages.doctor}),
     image: z.instanceof(File).optional(),
 });
 
@@ -78,7 +78,6 @@ export default function ConsulSetting() {
     }
 
 
-
     const fetchData = async () => {
         try {
             const [doctorProductList, doctorsList] = await Promise.all([fetchAllDoctorProduct(), fetchAllDoctors()]);
@@ -103,9 +102,9 @@ export default function ConsulSetting() {
     return (
         <div className="flex flex-col w-full h-full">
             <Dialog>
-                <DialogTrigger>
+                <DialogTrigger asChild>
                     <Button className="absolute bottom-0 right-0 m-5">
-                        <Plus />
+                        <Plus/>
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
@@ -115,39 +114,39 @@ export default function ConsulSetting() {
                             <FormField
                                 control={form.control}
                                 name="title"
-                                render={({ field }) => (
+                                render={({field}) => (
                                     <FormItem>
                                         <FormLabel>Title</FormLabel>
                                         <FormControl>
                                             <Input placeholder="Консультация врача" {...field} />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage/>
                                     </FormItem>
                                 )}
                             />
                             <FormField
                                 control={form.control}
                                 name="description"
-                                render={({ field }) => (
+                                render={({field}) => (
                                     <FormItem>
                                         <FormLabel>Description</FormLabel>
                                         <FormControl>
                                             <Input placeholder="Описание консультации" {...field} />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage/>
                                     </FormItem>
                                 )}
                             />
                             <FormField
                                 control={form.control}
                                 name="price"
-                                render={({ field }) => (
+                                render={({field}) => (
                                     <FormItem>
                                         <FormLabel>Цена</FormLabel>
                                         <FormControl>
                                             <Input type="number" placeholder="1000" {...field} />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage/>
                                     </FormItem>
                                 )}
                             />
@@ -158,9 +157,10 @@ export default function ConsulSetting() {
                                     <FormItem>
                                         <FormLabel>Image</FormLabel>
                                         <FormControl>
-                                            <Input type="file" onChange={(e) => form.setValue("image", e.target.files?.[0])} />
+                                            <Input type="file"
+                                                   onChange={(e) => form.setValue("image", e.target.files?.[0])}/>
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage/>
                                     </FormItem>
                                 )}
                             />
@@ -197,11 +197,10 @@ export default function ConsulSetting() {
             </Dialog>
 
 
-
             {doctorsProducts.length > 0 ? (
                 <div className="grid grid-cols-3 gap-4">
                     {doctorsProducts.map((docprod) => (
-                        <DocconsulComp key={docprod.id} consul={docprod} />
+                        <DocconsulComp key={docprod.id} consul={docprod}/>
                     ))}
                 </div>
             ) : (

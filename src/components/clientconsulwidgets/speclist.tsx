@@ -2,8 +2,10 @@
 
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
+import {getDoctorsWSpecAction} from "@/components/clientconsulwidgets/action";
+import {isSuccess} from "@/lib/isSuccessGuard";
 
-interface Specs {
+export interface Specs {
     specialty: string;
     doctorIds: string[];
 }
@@ -16,10 +18,10 @@ export default function SpecList() {
     useEffect(() => {
         async function fetchSpecList() {
             try {
-                const response = await fetch("/api/userconsul/specs");
-                if (!response.ok) throw new Error("Ошибка загрузки данных");
-                const data: Specs[] = await response.json();
-                setSpecs(data);
+                const response = await getDoctorsWSpecAction()
+                if (isSuccess(response)){
+                    setSpecs(response.data);
+                }
             } catch (error) {
                 console.error("Ошибка:", error);
             } finally {

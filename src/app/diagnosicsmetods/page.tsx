@@ -10,21 +10,21 @@ import {
 } from "@/components/ui/card";
 
 import React from "react";
-import {Method} from "@/types/method.type";
 import DoctorForm from "@/components/client-profile-component/doctorform";
+import {getMethodsAction} from "@/components/admin-components/method-admin-component/action";
+import {isSuccess} from "@/lib/isSuccessGuard";
+import {MethodType} from "@/types/method.types/method.type";
 
 
 export default function MetodsClient() {
-    const [metods, setMetod] = React.useState<Method[]>([]);
+    const [metods, setMetod] = React.useState<MethodType[]>([]);
 
     const fetchMetods = async () => {
         try {
-            const res = await fetch("/api/methods");
-            if (!res.ok) {
-                throw new Error("Ошибка при загрузке данных");
+            const res = await getMethodsAction()
+            if (isSuccess(res)) {
+                setMetod(res.methods)
             }
-            const data: Method[] = await res.json(); // ✅ Парсим JSON
-            setMetod(data); // ✅ Сохраняем в state
         } catch (error) {
             console.error("Ошибка при загрузке методов:", error);
         }
@@ -42,7 +42,7 @@ export default function MetodsClient() {
             {metods.map((method, index) => (
                 <Card key={index} className="shadow-lg relative">
                     <CardHeader>
-                        <CardTitle>{method.title}</CardTitle>
+                        <CardTitle>{method.tittle}</CardTitle>
                         <CardDescription>{method.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -55,7 +55,7 @@ export default function MetodsClient() {
 
                     </CardContent>
                     <CardFooter>
-                        <DoctorForm metod={method.title}/>
+                        <DoctorForm metod={method.tittle}/>
                     </CardFooter>
                 </Card>
             ))}
