@@ -11,14 +11,13 @@ export async function fetcher<T = unknown>(
     url: string,
     options: RequestInit = {}
 ): Promise<T> {
+    // Внутри fetcher ожидаем, что url уже начинается с /api
     const headers = new Headers(options.headers);
-
-
     if (!headers.has('Content-Type') && !(options.body instanceof FormData)) {
         headers.set('Content-Type', 'application/json');
     }
 
-    const res = await fetch(``, {
+    const res = await fetch(url, {
         ...options,
         credentials: 'include',
         headers,
@@ -30,9 +29,7 @@ export async function fetcher<T = unknown>(
         try {
             const data = await res.json();
             errorMessage = data.message || errorMessage;
-        } catch {
-
-        }
+        } catch {}
         throw new ApiError(errorMessage, res.status);
     }
 
