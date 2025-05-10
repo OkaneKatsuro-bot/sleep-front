@@ -1,14 +1,15 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     async rewrites() {
         return [
             {
-                source: '/api/:path*',                            // любой запрос на /api/*
-                destination: 'https://sleep-backend-0048.onrender.com/:path*',  // перенаправить на ваш бек
+                // Любые запросы, начинающиеся не с _next, не к favicon.ico и не к файлам с расширением
+                source: '/:path((?!_next|favicon\\.ico|.*\\..*).*)',
+                destination: 'https://sleep-backend-0048.onrender.com/:path',
             },
         ]
     },
-};
+}
 
-export default nextConfig;
+export default nextConfig
