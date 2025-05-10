@@ -79,7 +79,7 @@ export function NewChart({diseasesList, disise}: { diseasesList: Disease[], disi
                     Вы отлично постарались! 🎉 Ваш тест завершён, и результаты готовы. На основе ваших ответов мы смогли
                     предположить возможные проблемы и пути их решения.
                     <strong>Ваше вероятное состояние:</strong>
-                    <span className="text-green-600 text-2xl">{disise}</span>
+                    <span className="text-green-600 text-2xl line-clamp-3 ">{disise}</span>
                 </CardDescription>
             </CardHeader>
             <CardContent className="flex-1 my-10 items-center">
