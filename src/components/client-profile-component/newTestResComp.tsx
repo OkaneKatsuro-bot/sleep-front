@@ -5,7 +5,7 @@ import React, {useEffect, useState, useMemo, useRef} from "react";
 
 import {CardDescription} from "@/components/ui/card";
 import {DoctorsComponent, MetodsComponent, ProductsComponent} from "./doctorscopmonent";
-import {Disease} from "@/types/test.types/testToUpdate.type";
+import {Disease, DiseaseToResult} from "@/types/test.types/testToUpdate.type";
 import {Category, Post} from "@/types/posts.type";
 import {Product} from "@/types/product.type";
 import {Method} from "@/types/method.type";
@@ -13,6 +13,8 @@ import {SafeUser} from "@/types/safeuser.type";
 import {NewChart} from "@/components/client-profile-component/newchart";
 import {PostsResult} from "@/components/client-profile-component/postrsult";
 import {checkMe} from "@/app/action";
+import {getResultAction} from "@/components/client-profile-component/action";
+import {isSuccess} from "@/lib/isSuccessGuard";
 
 // Компонент для отображения диагноза и поста
 function DiagnosisSection({maxDiagnosis, post}: { maxDiagnosis: Disease; post: Post | null }) {
@@ -46,7 +48,7 @@ export default function NnewTestResComp({isOpenn}: NnewTestResCompProps) {
     const [result, setResult] = useState<string[] | null>(null);
     const [maxDiagnosis, setMaxDiagnosis] = useState<Disease>();
     const [user, setUser] = useState<SafeUser>();
-    const [, setDisease] = useState<Disease>();
+    const [, setDisease] = useState<DiseaseToResult>();
     const [post, setPost] = useState<Post & { categories: Category[] } | null>(null);
     const [doctors, setDoctors] = useState<SafeUser[]>([]);
     const [metods, setMetods] = useState<Method[]>([]);
@@ -79,20 +81,16 @@ export default function NnewTestResComp({isOpenn}: NnewTestResCompProps) {
     // Получение информации для виджета
     const fetchInfoForWidget = async (diagnos: string) => {
         try {
-            const response = await fetch("/api/resultWidgets", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({diagnos}),
-            });
-            const data = await response.json();
-            console.log("Инфа о диагнозе:", data);
-
-            setDisease(data.disease);
-            setPost(data.disease.post);
-            setDoctors(data.disease.assignedDoctor);
-            setMetods(data.disease.Metod);
-            setProducts(data.disease.Product);
-
+            const res = await getResultAction(diagnos)
+            if (isSuccess(res)) {
+                if (res.disease) {
+                    setDisease(res.disease);
+                }
+                setPost(res.disease.post);
+                setDoctors(res.disease.assignedDoctor);
+                setMetods(res.disease.Metod);
+                setProducts(res.disease.Product);
+            }
         } catch (err) {
             console.error("Ошибка при загрузке данных для виджета:", err);
         }

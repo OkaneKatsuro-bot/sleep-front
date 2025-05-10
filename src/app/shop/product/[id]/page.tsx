@@ -1,10 +1,11 @@
 'use client' // Указываем, что это клиентский компонент
 
 import { Suspense, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { Container } from "@/components/ui/container";
 import { ProductForm } from "@/components/shop/product-form";
 import { shop } from '@/api';
+import {useParams, useRouter} from 'next/navigation';
+
 
 // Функция для получения данных о продукте
 async function fetchProduct(id: number) {
@@ -17,8 +18,9 @@ export default function ProductPage() {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    const router = useRouter();
-    const { id } = router.query;  // Получаем id из query (URL параметра)
+    const params = useParams();      // { id: string }
+    const id = Number(params.id);
+    const router = useRouter();// Получаем id из query (URL параметра)
 
     useEffect(() => {
         if (!id) return;  // Если id еще не доступен, ничего не делать

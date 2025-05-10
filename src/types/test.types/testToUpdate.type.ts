@@ -105,3 +105,14 @@ export interface  GetDocAndPostCreate{
     methods: Method[],
 }
 
+export interface DiseaseToResult {
+    id: number
+    title: string
+    postId: number
+    post: Post
+    test: TestToUpdate
+    assignedDoctor: SafeUser[]
+    Metod: Method[]
+    score: number
+    Product: Product[]
+}

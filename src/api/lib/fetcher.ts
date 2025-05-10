@@ -1,5 +1,6 @@
 export class ApiError extends Error {
     status: number;
+
     constructor(message: string, status: number) {
         super(message);
         this.status = status;
@@ -17,7 +18,7 @@ export async function fetcher<T = unknown>(
         headers.set('Content-Type', 'application/json');
     }
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
+    const res = await fetch(``, {
         ...options,
         credentials: 'include',
         headers,
