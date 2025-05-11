@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
 
     // 2) Обращаемся к профилю через прокси-rewrite
     const profileRes = await fetch(
-        `${req.nextUrl.origin}/api/auth/profile`,
+        `${req.nextUrl.origin}/auth/profile`,
         {
             method: 'GET',
             headers: {
