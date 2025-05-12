@@ -17,6 +17,7 @@ export async function fetcher<T = unknown>(
         headers.set('Content-Type', 'application/json');
     }
 
+
     const res = await fetch(url, {
         ...options,
         credentials: 'include',

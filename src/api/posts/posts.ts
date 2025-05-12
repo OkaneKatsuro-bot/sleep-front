@@ -5,5 +5,8 @@ export async function getPosts(){
 }
 
 export async function getPostByTitle(title: string){
-    return await fetcher(`/posts/${title}`);
+    return await fetcher(`/posts`,{
+        method: "POST",
+        body: JSON.stringify({title}),
+    });
 }
