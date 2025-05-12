@@ -29,8 +29,8 @@ export default function Page({params}: { params: Promise<{ title: string }> }) {
 
         const fetchPost = async () => {
             try {
-                const encodedTitle = encodeURIComponent(title);
-                const res = await getPostByTitleAction(encodedTitle);
+            //    const encodedTitle = encodeURIComponent(title);
+                const res = await getPostByTitleAction(title);
                 if (isSuccess(res)) {
                     setArticle(res.data);
                 } else {
