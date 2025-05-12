@@ -1,15 +1,21 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     async rewrites() {
+        const baseUrl =
+            process.env.STATE === 'DEV'
+                ? 'http://localhost:4200'
+                : 'https://sleep-backend-0048.onrender.com'
+
         return [
             {
-                // Любые запросы, начинающиеся не с _next, не к favicon.ico и не к файлам с расширением
-                source: '/:path((?!_next|favicon\\.ico|.*\\..*).*)',
-                destination: 'https://sleep-backend-0048.onrender.com/:path',
+                // любое вхождение /что-то (кроме _next, favicon, static-файлов)
+                source: '/:path((?!(?:_next|favicon\\.ico|.*\\..*|articles(?:/.*)?)).*)',
+                // переписываем на бэкенд так, чтобы “path” пошёл в URL
+                destination: `${baseUrl}/:path`,
             },
         ]
     },
 }
 
 export default nextConfig
+

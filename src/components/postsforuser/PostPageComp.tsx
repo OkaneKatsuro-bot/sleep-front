@@ -82,8 +82,8 @@ export function PostPageComp({showLimited = false}: PostPageCompProps) {
         : displayedPosts;
 
     const handleCardClick = (title: string) => {
-        const encodedTitle = encodeURIComponent(title);
-        router.push(`/articles/${encodedTitle}`);
+
+        router.push(`/articles/${title}`);
     };
 
     const handleCategoryClick = (categoryName: string) => {
