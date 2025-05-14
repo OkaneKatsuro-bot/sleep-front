@@ -94,12 +94,12 @@ export default function DoctorsList() {
                                         {doctor.specialty}
                                     </div>
                                 )}
-                                <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                                    <strong>Телефон:</strong> {doctor.phone}
-                                </div>
-                                <div className="text-sm text-gray-600 dark:text-gray-400">
-                                    <strong>Email:</strong> {doctor.email}
-                                </div>
+                                {/*<div className="text-sm text-gray-600 dark:text-gray-400 mb-1">*/}
+                                {/*    <strong>Телефон:</strong> {doctor.phone}*/}
+                                {/*</div>*/}
+                                {/*<div className="text-sm text-gray-600 dark:text-gray-400">*/}
+                                {/*    <strong>Email:</strong> {doctor.email}*/}
+                                {/*</div>*/}
                             </div>
                             {/* Кнопка записи на прием */}
                             <div className="p-4 w-full">

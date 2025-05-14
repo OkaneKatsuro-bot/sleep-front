@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    images: {
+        domains: ['assets.aceternity.com'],
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "storage.yandexcloud.net",
+                pathname: "/**",
+            },
+        ],// Добавьте сюда ваш домен для загрузки изображений
+    },
     async rewrites() {
         const baseUrl =
             process.env.STATE === 'DEV'
@@ -8,7 +18,7 @@ const nextConfig = {
 
         return [
             {
-                source: '/:path((?!(?:_next|favicon\\.ico|.*\\..*|articles(?:/.*)?|test(?:/.*|$)|consultations(?:/.*|$))).*)',
+                source: '/:path((?!(?:_next|favicon\\.ico|.*\\..*|articles(?:/.*)?|test(?:/.*|$)|consultations(?:/.*|$)|shop(?:/.*|$))).*)',
                 destination: `${baseUrl}/:path`,
             },
         ]
