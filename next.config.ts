@@ -8,9 +8,7 @@ const nextConfig = {
 
         return [
             {
-                // любое вхождение /что-то (кроме _next, favicon, static-файлов)
-                source: '/:path((?!(?:_next|favicon\\.ico|.*\\..*|articles(?:/.*)?)).*)',
-                // переписываем на бэкенд так, чтобы “path” пошёл в URL
+                source: '/:path((?!(?:_next|favicon\\.ico|.*\\..*|articles(?:/.*)?|test(?:/.*|$)|consultations(?:/.*|$))).*)',
                 destination: `${baseUrl}/:path`,
             },
         ]
@@ -18,4 +16,3 @@ const nextConfig = {
 }
 
 export default nextConfig
-
