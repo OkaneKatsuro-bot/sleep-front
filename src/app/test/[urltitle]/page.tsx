@@ -11,7 +11,7 @@ import {
     CardFooter,
 } from "@/components/ui/card";
 import {Label} from "@/components/ui/label";
-import {useTestStore} from "@/app/[urltitle]/_store/testStore";
+import {useTestStore} from "@/app/test/_store/testStore";
 import {useRouter} from "next/navigation";
 import {Progress} from "@radix-ui/react-progress";
 import {checkMe} from "@/components/admin-components/main-admin-components/action";
@@ -221,10 +221,10 @@ export default function Page({ params: paramsPromise }: { params: Promise<{ urlt
                 </CardFooter>
             </Card>
 
-            <div className="mt-8 text-center">
-                <h2 className="font-bold">Промежуточные результаты:</h2>
-                <div>{intermediateResults}</div>
-            </div>
+            {/*<div className="mt-8 text-center">*/}
+            {/*    <h2 className="font-bold">Промежуточные результаты:</h2>*/}
+            {/*    <div>{intermediateResults}</div>*/}
+            {/*</div>*/}
         </div>
     );
 }

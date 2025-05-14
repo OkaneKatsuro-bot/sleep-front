@@ -7,22 +7,22 @@ export interface createConsulOrderProps {
 }
 
 export async function getDoctors() {
-    return await fetcher(`/consultations`);
+    return await fetcher(`/api/consultations`);
 }
 
 export async function createOrder(prop: createConsulOrderProps) {
-    return await fetcher(`/consultations/order`, {
+    return await fetcher(`/api/consultations/order`, {
         method: "POST",
         body: JSON.stringify(prop),
     });
 }
 
 export async function getDoctorsWSpec() {
-    return await fetcher(`/consultations/doctorsWSpec`, {})
+    return await fetcher(`/api/consultations/doctorsWSpec`, {})
 }
 
 export async function getDoctorsById(doctorId: string) {
-    return await fetcher(`/consultations/doctors`, {
+    return await fetcher(`/api/consultations/doctors`, {
         method: "POST",
         body: JSON.stringify({ doctorId }),
     })
