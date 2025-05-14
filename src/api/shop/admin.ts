@@ -1,15 +1,15 @@
 import {fetcher} from "@/api/lib/fetcher";
 
 export async function getCategories() {
-    return fetcher('/shop/categories')
+    return fetcher('/api/shop/categories')
 }
 
 export async function getProducts() {
-    return await fetcher('/shop/products')
+    return await fetcher('/api/shop/products')
 }
 
 export async function createCategory(data: string) {
-    return fetcher('/shop/categories',
+    return fetcher('/api/shop/categories',
         {
             method: 'POST',
             body: JSON.stringify({data}),
@@ -18,7 +18,7 @@ export async function createCategory(data: string) {
 }
 
 export async function createProduct(data: FormData) {
-    return fetcher('/shop/products',
+    return fetcher('/api/shop/products',
         {
             method: 'POST',
             body: data,

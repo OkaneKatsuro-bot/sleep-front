@@ -35,3 +35,9 @@ export async function createProductAction(data: FormData): Promise<ActionResult>
         return await shop.createProduct(data);
     })
 }
+
+export async function createProductItemAction(data: any): Promise<ActionResult> {
+    return handleAction(async () => {
+        return await shop.createProductItem(data);
+    })
+}
