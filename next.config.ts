@@ -18,7 +18,7 @@ const nextConfig = {
 
         return [
             {
-                source: '/:path((?!(?:_next|favicon\\.ico|.*\\..*|articles(?:/.*)?|test(?:/.*|$)|consultations(?:/.*|$)|shop(?:/.*|$))).*)',
+                source: '/:path((?!(?:_next|favicon\\.ico|.*\\..*|articles(?:/.*)?|test(?:/.*|$)|consultations(?:/.*|$)|shop(?:/.*))).*)',
                 destination: `${baseUrl}/:path`,
             },
         ]
