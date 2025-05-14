@@ -4,7 +4,6 @@ import React, {useEffect, useState} from "react";
 import {Dialog, DialogContent} from "@/components/ui/dialog";
 import {Button} from "@/components/ui/button";
 import {Badge} from "@/components/ui/badge";
-import Image from "next/image";
 import {Product} from "@/types/product.type";
 import {Category} from "@/types/posts.type";
 import {ProductItem} from "@/types/shop.types/shop.type";
@@ -108,11 +107,10 @@ export default function ProductDetailDialog({
 
                             <div className="flex w-1/2 items-start justify-start flex-col gap-4">
                                 <div className="relative w-60 h-60">
-                                    <Image
+                                    <img
                                         src={product.imageUrl}
                                         alt={product.name}
-                                        fill
-                                        className="object-fit rounded-lg"
+                                        className="object-fill rounded-lg"
                                     />
                                 </div>
                                 <div className="text-xl font-semibold">{product.name}</div>

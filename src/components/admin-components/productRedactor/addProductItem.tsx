@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {Product} from "@/types/product.type";
+import {createProductItemAction} from "@/components/admin-components/productRedactor/action";
+import {isSuccess} from "@/lib/isSuccessGuard";
 
 // 1. Схема формы
 // z.coerce.number() — чтобы строка из инпута превращалась в число
@@ -58,19 +60,12 @@ export function ProductVariationDialog({
                 productId: product.id,
             };
 
-            const response = await fetch("/api/products/createProductItem", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(body),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Ошибка запроса: ${response.status}`);
+            const res = await createProductItemAction(body)
+            if (isSuccess(res)) {
+                console.log("Создан новый ProductItem:");
+            } else {
+                throw new Error(`Ошибка запроса: ${res.message}`);
             }
-
-            // Допустим, сервер вернёт нам созданный объект или подтверждение
-            const createdItem = await response.json();
-            console.log("Создан новый ProductItem:", createdItem);
 
             // Закрываем диалог (и при необходимости перезагружаем список вариаций)
             onClose();
